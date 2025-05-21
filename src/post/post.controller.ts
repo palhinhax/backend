@@ -16,13 +16,12 @@ import { PostService } from './post.service';
 export class PostController {
   constructor(private postService: PostService) {}
 
-  // 🔓 Rota pública
+  @UseGuards(JwtAuthGuard)
   @Get('feed')
   getPublicFeed() {
     return this.postService.getPublicFeed();
   }
 
-  // 🔒 Rotas privadas
   @UseGuards(JwtAuthGuard)
   @Get('me')
   getMyPosts(@Req() req: { user: { userId: string } }) {
