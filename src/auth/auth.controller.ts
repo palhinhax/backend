@@ -7,6 +7,7 @@ export class AuthController {
 
   @Post('register')
   register(@Body() body: { email: string; name: string; password: string }) {
+    console.log('Registering user, body:', body);
     return this.auth.register(body);
   }
 

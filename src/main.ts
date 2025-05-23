@@ -8,7 +8,10 @@ async function bootstrap() {
   app.useGlobalFilters(new UnauthorizedExceptionFilter());
 
   app.enableCors({
-    origin: 'http://localhost:5173', // URL do seu front-end
+    origin: [
+      'http://localhost:5173', // URL do seu front-end local
+      'https://backend-production-b318.up.railway.app', // URL do seu back-end em produção
+    ], // URL do seu front-end
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos permitidos
     allowedHeaders: 'Content-Type, Accept, Authorization', // Cabeçalhos permitidos
   });
