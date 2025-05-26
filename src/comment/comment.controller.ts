@@ -14,13 +14,11 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
-  // 🔓 público
   @Get(':postId')
   getComments(@Param('postId') postId: string) {
     return this.commentService.getCommentsByPost(postId);
   }
 
-  // 🔒 privado
   @UseGuards(JwtAuthGuard)
   @Post(':postId')
   addComment(

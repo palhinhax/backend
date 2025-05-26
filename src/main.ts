@@ -9,7 +9,8 @@ async function bootstrap() {
 
   app.enableCors({
     origin: [
-      'http://localhost:5173', // URL do seu front-end local
+      'http://localhost:5173', // URL do seu front-end local *
+      'http://localhost:5174', // URL do seu back-end local *
       'https://backend-production-b318.up.railway.app', // URL do seu back-end em produção
       'https://palhinhax.github.io',
     ], // URL do seu front-end

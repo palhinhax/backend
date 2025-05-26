@@ -13,6 +13,7 @@ export class AuthController {
 
   @Post('login')
   login(@Body() body: { email: string; password: string }) {
+    console.log('Logging in user, body:', body);
     return this.auth.login(body);
   }
 }

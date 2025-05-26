@@ -16,9 +16,10 @@ import { PostService } from './post.service';
 export class PostController {
   constructor(private postService: PostService) {}
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get('feed')
   getPublicFeed() {
+    console.log('Fetching public feed');
     return this.postService.getPublicFeed();
   }
 
