@@ -6,10 +6,19 @@ import { Response } from 'express';
 export class UnauthorizedExceptionFilter implements ExceptionFilter {
   catch(exception: UnauthorizedException, host: ArgumentsHost) {
     const response = host.switchToHttp().getResponse<Response>();
-    response.status(401).json({
-      statusCode: 401,
-      message: 'Token expired or invalid',
-      error: 'Unauthorized',
+
+    const status = exception.getStatus();
+    const exceptionResponse = exception.getResponse();
+
+    // Handles both string and object error responses
+    const errorResponse =
+      typeof exceptionResponse === 'string'
+        ? { message: exceptionResponse }
+        : exceptionResponse;
+
+    response.status(status).json({
+      statusCode: status,
+      ...errorResponse,
     });
   }
 }
